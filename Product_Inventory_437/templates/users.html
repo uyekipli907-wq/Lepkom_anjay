@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="topbar">
+        <div>
+            <p class="eyebrow">LepKom Berkah Maju</p>
+            <h1>User Management</h1>
+        </div>
+        <nav class="nav-actions">
+            <span class="user-chip">{{.User.Username}} / {{.User.Role}}</span>
+            <a class="secondary-button" href="/products">Produk</a>
+            <form method="post" action="/logout">
+                <button type="submit" class="ghost-button">Logout</button>
+            </form>
+        </nav>
+    </header>
+
+    <main class="page-grid single">
+        <section class="panel wide-panel">
+            {{if .Success}}
+            <div class="alert success">{{.Success}}</div>
+            {{end}}
+            {{if .Error}}
+            <div class="alert error">{{.Error}}</div>
+            {{end}}
+
+            <div class="section-title">
+                <h2>Daftar User</h2>
+                <span>{{len .Users}} akun</span>
+            </div>
+
+            <div class="user-list">
+                <div class="user-header">
+                    <span>ID</span>
+                    <span>Username</span>
+                    <span>Role</span>
+                    <span>Token API</span>
+                    <span>Aksi</span>
+                </div>
+                {{range .Users}}
+                <div class="user-row">
+                    <span class="muted">#{{.ID}}</span>
+                    <strong>{{.Username}}</strong>
+                    <span class="role-badge">{{.Role}}</span>
+                    {{if .APIToken}}
+                    <textarea readonly rows="2">{{.APIToken}}</textarea>
+                    {{else}}
+                    <span class="muted">Belum dibuat</span>
+                    {{end}}
+                    <form method="post" action="/users/{{.ID}}/token">
+                        <button type="submit" class="secondary-button">Generate Token</button>
+                    </form>
+                </div>
+                {{end}}
+            </div>
+        </section>
+    </main>
+</body>
+</html>

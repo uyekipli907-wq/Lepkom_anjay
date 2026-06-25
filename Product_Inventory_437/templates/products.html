@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header class="topbar">
+        <div>
+            <p class="eyebrow">LepKom Berkah Maju</p>
+            <h1>Product Inventory</h1>
+        </div>
+        <nav class="nav-actions">
+            <span class="user-chip">{{.User.Username}} / {{.User.Role}}</span>
+            {{if eq .User.Role "admin"}}
+            <a class="secondary-button" href="/users">User Management</a>
+            {{end}}
+            <form method="post" action="/logout">
+                <button type="submit" class="ghost-button">Logout</button>
+            </form>
+        </nav>
+    </header>
+
+    <main class="page-grid">
+        <section class="panel">
+            <h2>Tambah Produk</h2>
+            {{if .Success}}
+            <div class="alert success">{{.Success}}</div>
+            {{end}}
+            {{if .Error}}
+            <div class="alert error">{{.Error}}</div>
+            {{end}}
+            <form method="post" action="/products" class="form-grid">
+                <label>
+                    Nama
+                    <input type="text" name="name" required maxlength="150">
+                </label>
+                <label>
+                    Harga
+                    <input type="number" name="price" min="0" step="0.01" required>
+                </label>
+                <label>
+                    Stok
+                    <input type="number" name="stock" min="0" step="1" required>
+                </label>
+                <label class="wide">
+                    Deskripsi
+                    <textarea name="description" rows="3"></textarea>
+                </label>
+                <button type="submit" class="primary-button wide">Simpan Produk</button>
+            </form>
+        </section>
+
+        <section class="panel wide-panel">
+            <div class="section-title">
+                <h2>Daftar Produk</h2>
+                <span>{{len .Products}} item</span>
+            </div>
+
+            <div class="product-list">
+                <div class="product-header">
+                    <span>ID</span>
+                    <span>Nama</span>
+                    <span>Harga</span>
+                    <span>Stok</span>
+                    <span>Deskripsi</span>
+                    <span>Aksi</span>
+                </div>
+                {{range .Products}}
+                <form method="post" action="/products/{{.ID}}/update" class="product-row">
+                    <span class="muted">#{{.ID}}</span>
+                    <input type="text" name="name" value="{{.Name}}" required maxlength="150">
+                    <input type="number" name="price" min="0" step="0.01" value="{{printf "%.2f" .Price}}" required>
+                    <input type="number" name="stock" min="0" step="1" value="{{.Stock}}" required>
+                    <input type="text" name="description" value="{{.Description}}">
+                    <div class="row-actions">
+                        <button type="submit" class="secondary-button">Update</button>
+                        <button type="submit" class="danger-button" form="delete-product-{{.ID}}">Delete</button>
+                    </div>
+                </form>
+                <form method="post" action="/products/{{.ID}}/delete" id="delete-product-{{.ID}}"></form>
+                {{else}}
+                <div class="empty-state">Belum ada produk.</div>
+                {{end}}
+            </div>
+        </section>
+    </main>
+</body>
+</html>

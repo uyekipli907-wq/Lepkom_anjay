@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body class="auth-page">
+    <main class="login-shell">
+        <section class="login-panel">
+            <div>
+                <p class="eyebrow">LepKom Berkah Maju</p>
+                <h1>Product Inventory</h1>
+            </div>
+
+            {{if .Error}}
+            <div class="alert error">{{.Error}}</div>
+            {{end}}
+
+            <form method="post" action="/login" class="stack">
+                <label>
+                    Username
+                    <input type="text" name="username" autocomplete="username" required autofocus>
+                </label>
+                <label>
+                    Password
+                    <input type="password" name="password" autocomplete="current-password" required>
+                </label>
+                <button type="submit" class="primary-button">Login</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

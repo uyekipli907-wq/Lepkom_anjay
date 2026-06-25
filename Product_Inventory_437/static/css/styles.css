@@ -1,0 +1,363 @@
+:root {
+    color-scheme: light;
+    --bg: #f4f6f8;
+    --panel: #ffffff;
+    --text: #1d2733;
+    --muted: #687586;
+    --line: #d8dee6;
+    --primary: #176b87;
+    --primary-dark: #0f4f63;
+    --accent: #2d8a61;
+    --danger: #b42318;
+    --danger-bg: #fff1f0;
+    --success-bg: #ecfdf3;
+    --success-text: #027a48;
+    --error-bg: #fef3f2;
+    --error-text: #b42318;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, Segoe UI, Arial, sans-serif;
+    font-size: 15px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1,
+h2,
+p {
+    margin: 0;
+}
+
+h1 {
+    font-size: clamp(1.45rem, 2vw, 2rem);
+    font-weight: 750;
+}
+
+h2 {
+    font-size: 1.05rem;
+}
+
+input,
+textarea,
+button {
+    font: inherit;
+}
+
+input,
+textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    background: #fff;
+    color: var(--text);
+}
+
+textarea {
+    resize: vertical;
+}
+
+label {
+    display: grid;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-weight: 650;
+}
+
+label input,
+label textarea {
+    color: var(--text);
+    font-weight: 500;
+}
+
+button,
+.primary-button,
+.secondary-button,
+.ghost-button,
+.danger-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 9px 14px;
+    cursor: pointer;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.primary-button {
+    background: var(--primary);
+    color: #fff;
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+}
+
+.secondary-button {
+    background: #eef7f9;
+    border-color: #bfdce5;
+    color: var(--primary-dark);
+}
+
+.ghost-button {
+    background: transparent;
+    border-color: var(--line);
+    color: var(--text);
+}
+
+.danger-button {
+    background: var(--danger-bg);
+    border-color: #f6c9c5;
+    color: var(--danger);
+}
+
+.auth-page {
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.login-shell {
+    width: min(420px, 100%);
+}
+
+.login-panel,
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(29, 39, 51, 0.08);
+}
+
+.login-panel {
+    display: grid;
+    gap: 24px;
+    padding: 28px;
+}
+
+.stack {
+    display: grid;
+    gap: 16px;
+}
+
+.eyebrow {
+    margin-bottom: 6px;
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 22px clamp(16px, 4vw, 40px);
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.user-chip,
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    border-radius: 999px;
+    padding: 6px 12px;
+    background: #eef2f6;
+    color: #344054;
+    font-size: 0.86rem;
+    font-weight: 750;
+}
+
+.page-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
+    gap: 18px;
+    padding: clamp(16px, 4vw, 40px);
+}
+
+.page-grid.single {
+    grid-template-columns: 1fr;
+}
+
+.panel {
+    display: grid;
+    align-content: start;
+    gap: 18px;
+    padding: 20px;
+}
+
+.wide-panel {
+    min-width: 0;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.wide {
+    grid-column: 1 / -1;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.section-title span {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.alert {
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-weight: 700;
+}
+
+.alert.success {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+.alert.error {
+    background: var(--error-bg);
+    color: var(--error-text);
+}
+
+.product-list,
+.user-list {
+    display: grid;
+    gap: 10px;
+    min-width: 0;
+}
+
+.product-header,
+.product-row {
+    display: grid;
+    grid-template-columns: 70px minmax(140px, 1.1fr) 130px 100px minmax(160px, 1fr) 170px;
+    gap: 10px;
+    align-items: center;
+}
+
+.user-header,
+.user-row {
+    display: grid;
+    grid-template-columns: 70px minmax(140px, 0.8fr) 120px minmax(280px, 1.5fr) 170px;
+    gap: 10px;
+    align-items: center;
+}
+
+.product-header,
+.user-header {
+    padding: 0 10px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.product-row,
+.user-row {
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fbfcfd;
+}
+
+.row-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.muted {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.empty-state {
+    padding: 24px;
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    color: var(--muted);
+    text-align: center;
+}
+
+@media (max-width: 1080px) {
+    .page-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-header,
+    .user-header {
+        display: none;
+    }
+
+    .product-row,
+    .user-row {
+        grid-template-columns: 1fr;
+    }
+
+    .row-actions {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 640px) {
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .nav-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    button,
+    .primary-button,
+    .secondary-button,
+    .ghost-button,
+    .danger-button {
+        width: 100%;
+    }
+
+    .row-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
